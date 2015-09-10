@@ -25,9 +25,13 @@ public class Baseline {
         input = consoleInput.getInput();
         while(!input.equals("")) {
             userInput.add(input);
-            parseInput(input);
+            parseInputAndCalculateTax(input);
             input = consoleInput.getInput();
         }
+    }
+
+    public double parseInputAndCalculateTax(String input) {
+        return parseInput(input).calculateTax();
     }
 
     public Product parseInput(String userInput) {

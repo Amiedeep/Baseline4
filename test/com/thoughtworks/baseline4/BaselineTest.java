@@ -34,4 +34,10 @@ public class BaselineTest {
     public void shouldParseTheInputAndReturnMeTheObjectRequiredWhenICallParseInputMethod() {
         assertEquals(Product.class, baseline.parseInput("some input 4").getClass());
     }
+
+    @Test
+    public void shouldParseTheInputAndReturnMeTaxWhenICallParseInputAndCalculateTaxMethod() {
+
+        assertEquals(64.80, baseline.parseInputAndCalculateTax("some product worth 647.747"));
+    }
 }
