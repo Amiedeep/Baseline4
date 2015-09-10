@@ -1,11 +1,12 @@
+//takes the input from the user and calculate tax.
 package com.thoughtworks.baseline4;
 
 import java.util.Scanner;
 
-//takes the input from the user and calculate tax.
 public class Baseline {
 
     private ConsoleInput consoleInput;
+    String userInput;
 
     public Baseline(ConsoleInput consoleInput) {
         this.consoleInput = consoleInput;
@@ -18,6 +19,13 @@ public class Baseline {
     }
 
     public void start() {
-        consoleInput.getInput();
+        userInput = consoleInput.getInput();
+        parseInput(userInput);
+    }
+
+    public Product parseInput(String userInput) {
+        String[] inputTokens = userInput.split(" ");
+        double price = Double.parseDouble(inputTokens[inputTokens.length-1]);
+        return new Product(price);
     }
 }
