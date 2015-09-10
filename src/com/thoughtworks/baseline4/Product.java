@@ -26,4 +26,8 @@ public class Product {
             return salesTax;
         }
     }
+
+    public double getTotalPriceIncludingTaxes() {
+        return price + salesTax;
+    }
 }
