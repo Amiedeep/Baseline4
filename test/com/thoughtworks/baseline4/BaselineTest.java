@@ -2,6 +2,9 @@ package com.thoughtworks.baseline4;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static junit.framework.TestCase.assertEquals;
@@ -11,15 +14,18 @@ public class BaselineTest {
 
     private Baseline baseline;
     private ConsoleInput consoleInput;
+    ByteArrayOutputStream outputStream;
 
     @Before
     public void setUp() {
         consoleInput = new ConsoleInput(new Scanner(System.in));
         baseline = new Baseline(consoleInput);
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
-    public void shouldStartTheApplicationAndWaitForUserInputWhenICallStartMethod() {
+    public void shouldStartTheApplicationAndWaitForUserInputAndDisplayOutputWhenICallStartMethod() {
         consoleInput = mock(ConsoleInput.class);
         baseline = new Baseline(consoleInput);
 
@@ -28,6 +34,8 @@ public class BaselineTest {
         baseline.start();
 
         verify(consoleInput, times(3)).getInput();
+
+        assertEquals("[hxhd 4.4, bd 5.5]\n", outputStream.toString());
     }
 
     @Test

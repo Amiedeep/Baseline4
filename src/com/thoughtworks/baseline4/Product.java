@@ -28,6 +28,6 @@ public class Product {
     }
 
     public double getTotalPriceIncludingTaxes() {
-        return price + salesTax;
+        return (double)round((price + salesTax) * 100)/100;
     }
 }

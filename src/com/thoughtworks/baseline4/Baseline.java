@@ -28,15 +28,32 @@ public class Baseline {
             parseInputAndCalculateTax(input);
             input = consoleInput.getInput();
         }
+        displayOutput();
+    }
+
+    private void displayOutput() {
+        System.out.println(userInput);
     }
 
     public double parseInputAndCalculateTax(String input) {
-        return parseInput(input).calculateTax();
+        Product product = parseInput(input);
+        double tax = product.calculateTax();
+        formatAndStoreInputIncludingTax(input, tax, product);
+        return tax;
     }
 
-    public Product parseInput(String userInput) {
-        String[] inputTokens = userInput.split(" ");
-        double price = Double.parseDouble(inputTokens[inputTokens.length-1]);
+    private void formatAndStoreInputIncludingTax(String input, double tax, Product product) {
+        String[] inputTokens = input.split(" ");
+        double price = product.getTotalPriceIncludingTaxes();
+        inputTokens[inputTokens.length - 1] = ""+price;
+        userInput.remove(input);
+
+        userInput.add(String.join(" ", inputTokens));
+    }
+
+    public Product parseInput(String input) {
+        String[] inputTokens = input.split(" ");
+        double price = Double.parseDouble(inputTokens[inputTokens.length - 1]);
         return new Product(price);
     }
 }
