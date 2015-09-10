@@ -15,7 +15,12 @@ public class Product {
 
         double taxAmount = (price*10)/100;
         taxAmount = (int)(taxAmount*100);
-        taxAmount = (int)round((double)taxAmount / 10);
-        return (double)taxAmount/10;
+        if(taxAmount%10 == 5) {
+            return (double)taxAmount/100;
+        }
+        else {
+            taxAmount = (int)round((double)taxAmount / 10);
+            return (double)taxAmount/10;
+        }
     }
 }
