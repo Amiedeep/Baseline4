@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.util.Scanner;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class BaselineTest {
 
@@ -25,9 +23,11 @@ public class BaselineTest {
         consoleInput = mock(ConsoleInput.class);
         baseline = new Baseline(consoleInput);
 
+        when(consoleInput.getInput()).thenReturn("hxhd 4", "bd 5", "");
+
         baseline.start();
 
-        verify(consoleInput, times(1)).getInput();
+        verify(consoleInput, times(3)).getInput();
     }
 
     @Test
